@@ -9,12 +9,21 @@ public class Rectangle extends Shape {
 	int width;
 	int height;
 	Color color;
+	String text;
 	
 	public Rectangle(Point origin, int width, int height, Color color){
 		this.origin = origin;
 		this.width = width;
 		this.height = height;
 		this.color = color;
+	}
+	
+	public Rectangle(Point origin, int width, int height, Color color, String text){
+		this.origin = origin;
+		this.width = width;
+		this.height = height;
+		this.color = color;
+		this.text = text;
 	}
 	
 	public boolean isOn(Point p) {
@@ -26,5 +35,23 @@ public class Rectangle extends Shape {
 		g.fillRect(origin.x, origin.y, width, height);
 		g.setColor(Color.BLACK);
 		g.drawRect(origin.x, origin.y, width, height);
+		
+		if (this.text != null)
+			g.drawString(text, (int) origin.x + width/2 - 70, (int) origin.y + height/2);
+	}
+	
+	@Override
+	public Point origin() {
+		return this.origin;
+	}
+	
+	@Override
+	public Shape duplicateFigure() {
+		return new Rectangle(this.origin, this.width, this.height, this.color);
+	}
+	
+	@Override
+	public void setText(String text) {
+		this.text = text;
 	}
 }

@@ -7,10 +7,19 @@ public class Circle extends Shape{
 	
 	private double radius;
 	
+	String text;
+	
 	public Circle(Point origin, double radius, Color color){
 		this.origin = origin;
 		this.radius = radius;
 		this.color = color;
+	}
+	
+	public Circle(Point origin, double radius, Color color, String text){
+		this.origin = origin;
+		this.radius = radius;
+		this.color = color;
+		this.text = text;
 	}
 	
 	public void paint(Graphics g){
@@ -18,6 +27,9 @@ public class Circle extends Shape{
 		g.fillOval((int)(origin.getX()-radius), (int)(origin.getY()-radius), (int)(2*radius), (int)(2*radius));
 		g.setColor(Color.BLACK);
 		g.drawOval((int)(origin.getX()-radius), (int)(origin.getY()-radius), (int)(2*radius), (int)(2*radius));
+		
+		if (text != null)
+			g.drawString(text, (int) (origin.x - (radius / 2) - 35), origin.y);
 	}
 	
 	public boolean isOn(Point p) {
@@ -28,6 +40,18 @@ public class Circle extends Shape{
 		return this.origin.distance(p);
 	}
 	
-
-
+	@Override
+	public Point origin() {
+		return this.origin;
+	}
+	
+	@Override
+	public Shape duplicateFigure() {
+		return new Circle(origin, radius, color);
+	}
+	
+	@Override
+	public void setText(String text) {
+		this.text = text;
+	}
 }

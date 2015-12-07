@@ -21,7 +21,13 @@ public abstract class Shape {
 	public abstract void paint(Graphics g);
 	
 	/**
-	 * renvoie true si la forme occupe sur le point donnŽ
+	 * renvoie true si la forme occupe sur le point donnï¿½
 	 */
 	public abstract boolean isOn(Point p);
+	
+	public abstract Point origin();
+	
+	public abstract Shape duplicateFigure();
+	
+	public abstract void setText(String name);
 }
